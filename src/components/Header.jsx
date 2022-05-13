@@ -5,7 +5,7 @@ import { useAuth } from '@hooks/useAuth';
 import Link from 'next/link';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
+  { name: 'Dashboard', href: '/Login', current: true },
   { name: 'Productos', href: '/dashboard/products/', current: false },
   { name: 'Ventas', href: '#', current: false },
 ];

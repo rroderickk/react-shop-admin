@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { useAuth } from '@hooks/useAuth';
 import { useRouter } from "next/router";
@@ -48,6 +48,9 @@ return ( <>
         font-extrabold text-gray-900" 
       > Sign in to your account
       </h1>
+      <h6 className="text-center mt-1 text-coolGray-400">account test: 
+      <b className="text-coolGray-700">{' '}rodri@dev.com</b>{' '}
+      pass: <b className="text-coolGray-700">dev</b></h6>
     </div>
 
     <form className="mt-8 space-y-6" onSubmit={submitHandle}>
