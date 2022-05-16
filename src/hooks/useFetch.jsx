@@ -17,7 +17,7 @@ const useFetchAxios =(endpoint)=> {
   React.useEffect(()=> { 
     try { fetchData() } 
     catch (error) { console.log("[!]\t"+error) } //todo
-  },[])
+  },[endpoint])
 
   return data;
 

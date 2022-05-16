@@ -1,8 +1,13 @@
 import React from 'react';
 import Header from '@components/Header';
 import Nav from '@common/Nav';
+import Head from 'next/head';
 
 const MainLayout =({ children })=> { return ( <>
+  <Head>
+    <title>My Store</title>
+  </Head>
+
   <div className="min-h-full">
   <Header/>
   <Nav/>
