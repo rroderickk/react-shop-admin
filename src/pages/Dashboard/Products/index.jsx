@@ -1,34 +1,52 @@
-import React from 'react';
-import endPoints from '@services/api';
-import { useFetchAxios } from '@hooks/useFetch';
-import { ChartComponent } from '@common/ChartComponent';
-import Pagination from '@components/Pagination';
+import React from "react";
+import axios from "axios";
+import { ViewGridAddIcon  } from '@heroicons/react/solid'
+import endPoints from "@services/api";
+import FormProduct from '@components/FormProduct';
+import Modal from '@common/Modal';
+import { useAlert } from "@hooks/useAlert";
+import { Alert } from "@common/Alert";
 
-  const PRODUCT_LIMIT = 10;
-  const PRODUCT_OFFSET = 10;
+const Products =()=> {
+  const [products, setProducts] = React.useState([]);
+  const [open, setOpen] = React.useState(false);
+  const {alert, setAlert, toggleAlert} = useAlert();
 
-export default function Dashboard() {
+  React.useEffect(()=> {
+      async function getProducts() {
+        const response = await axios.get(endPoints.products.list);
+        setProducts(response.data);
+      };
 
-  const [offset, setOffset] = React.useState(PRODUCT_OFFSET);
-  const products = useFetchAxios(endPoints.products.paginate(PRODUCT_LIMIT, offset));
-
-  const categoryName = products?.map(product=> product.category);
-  const categoryCount = categoryName?.map(category=> category.name);
-
-  const countOcurrences = arr => arr.reduce((prev, curr)=> ((prev[curr] = ++prev[curr] || 1), prev), {} );
-  const x = React.useMemo(()=> countOcurrences(categoryCount), [categoryCount]);
-
-  const charData = {
-    datasets: [{
-      label: 'Categories',
-      data: x,
-      borderWidth: 2,
-      backgroundColor: ['#62dbf2', '#fb5570','#f99c98','#391459', '#a7da03'],
-    }]
-  };
+      try { getProducts() }
+      catch { console.log('error') }
+    }, [alert]
+  );
 
 return ( <>
-<ChartComponent charData={charData} />
+<Alert alert={alert} handleClose={toggleAlert} />
+<div className="lg:flex lg:items-center lg:justify-between mt-5">
+  <div className="flex-1 min-w-0">
+    <h2 className="text-2xl font-bold leading-7 text-gray-900 
+      sm:text-3xl sm:truncate mb-8"
+    > List of products </h2>
+  </div>
+
+  <div className="mt-5 flex lg:mt-0 lg:ml-4">
+    <span className="sm:ml-3">
+      <button type="button" onClick={()=> setOpen(!open)}
+        className="inline-flex items-center px-4 py-2 border 
+          border-transparent rounded-md shadow-sm text-sm 
+          font-medium text-white bg-indigo-600 
+          hover:bg-indigo-700 focus:outline-none focus:ring-2 
+          focus:ring-offset-2 focus:ring-indigo-500"
+      > <ViewGridAddIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+        Add Product
+      </button>
+    </span>
+  </div>
+</div>
+
 <div className="flex flex-col">
   <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -51,14 +69,11 @@ return ( <>
                 <th scope="col" className="relative px-6 py-3">
                   <span className="sr-only">Delete</span>
                 </th>
-                <th scope="col">
-                  <Pagination offset={offset} setOffset={setOffset} />
-                </th>
             </tr>
           </thead>
 
           <tbody className="bg-white divide-y divide-gray-200">
-            { products?.map((product)=> (
+            { products?.map(product=> (
               <tr key={`Product-item-${product.id}`}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
@@ -107,4 +122,9 @@ return ( <>
     </div>
   </div>
 </div>
-</> ); };
+
+<Modal open={open} setOpen={setOpen}>
+  <FormProduct setOpen={setOpen} setAlert={setAlert} />
+</Modal>
+
+</> ) }; export default Products;

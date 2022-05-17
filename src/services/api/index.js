@@ -1,14 +1,15 @@
 const API = process.env.NEXT_PUBLIC_API_URL; 
 const VERSION = process.env.NEXT_PUBLIC_API_VERSION;
 
-const endPoints ={
+const endPoints = {
   auth: {
     login: `${API}/api/${VERSION}/auth/login`,
     profile: `${API}/api/${VERSION}/auth/profile`,
-  }, products: {
+  }, 
+  products: {
+    get: id=> `${API}/api/${VERSION}/products/${id}`,
     list: `${API}/api/${VERSION}/products`,
     paginate: (limit=10, offset=1)=> `${API}/api/${VERSION}/products?limit=${limit}&offset=${offset}`,
-    get: id=> `${API}/api/${VERSION}/products/${id}`,
     create: `${API}/api/${VERSION}/products`,
     update: id=> `${API}/api/${VERSION}/products/${id}`,
     delete: id=> `${API}/api/${VERSION}/products/${id}`,

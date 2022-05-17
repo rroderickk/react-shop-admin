@@ -4,24 +4,22 @@ import { Chart as ChartJS, CategoryScale,
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(
-  CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend,
+  CategoryScale, LinearScale, BarElement, 
+  Title, Tooltip, Legend,
 );
 
-const ChartComponent =({ charData })=> { return (<>
-  <Bar data={charData}
-    options={{
-      title: {
-        display: true,
-        text: 'Category',
-        fontSize: 20,
-      },
-    plugins: {
-      legend: {
-        display: true,
-        position: 'right',
-        labels: { color: 'rgb(255, 99, 132)' },
-      },
+const options = {
+  title: { display: true,
+    text: 'Category',
+    fontSize: 20,
+  },
+  plugins: {
+    legend: { display: true,
+      position: 'top',
+      labels: { color: 'rgb(255, 99, 132)' },
     },
-  }}
-  />
-</> ) }; export { ChartComponent };
+  },
+};
+
+export const ChartComponent =({ charData })=>
+  <Bar className="mb-8 mt-2" data={charData} options={options}/>

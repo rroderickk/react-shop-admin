@@ -48,9 +48,11 @@ return ( <>
         font-extrabold text-gray-900" 
       > Sign in to your account
       </h1>
-      <h6 className="text-center mt-1 text-coolGray-400">account test: 
+
+      <h6 className="text-center mt-1 text-coolGray-400"> account test: 
       <b className="text-coolGray-700">{' '}rodri@dev.com</b>{' '}
       pass: <b className="text-coolGray-700">dev</b></h6>
+
     </div>
 
     <form className="mt-8 space-y-6" onSubmit={submitHandle}>
@@ -115,13 +117,14 @@ return ( <>
             />
           </span>
           Sign in
-            {loading && (
+            { loading && (
               <span className="flex absolute h-4 w-4 top-0 right-0 -mt-1 -mr-1">
                 <span className="animate-ping absolute inline-flex 
                   h-full w-full rounded-full bg-red-400 opacity-75">
                 </span>
                 <span className="relative inline-flex rounded-full 
                   h-4 w-4 bg-cyan-400">
+
                 </span>
               </span>
             )}
@@ -134,21 +137,13 @@ return ( <>
           <span className="font-medium">Error!</span> {errorLogin}
         </div>
       )}
+
+      <h6 className="text-center text-coolGray-400">admin account: 
+      <b className="text-coolGray-700">{' '}admin@mail.com</b>{' '}
+      pass: <b className="text-coolGray-700">admin123</b></h6>
+
     </form>
   </div>
 </div>
 
 </> ); };
-
-
-
-
-  // const emailRef = useRef(null);
-  // const passwordRef = useRef(null);
-  // const submitHandle =e=> { e.preventDefault();
-  //   const email = emailRef.current.value;
-  //   const password = passwordRef.current.value;
-  //   auth.signIn(email, password).then(()=> {       //?<- autenticacion
-  //     alert("login success");
-  //   });
-  // };
