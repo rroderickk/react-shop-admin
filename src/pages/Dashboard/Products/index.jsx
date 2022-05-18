@@ -17,10 +17,9 @@ const Products =()=> {
         const response = await axios.get(endPoints.products.list);
         setProducts(response.data);
       };
-
       try { getProducts() }
       catch { console.log('error') }
-    }, [alert]
+    }, [products, alert]
   );
 
 return ( <>
@@ -124,7 +123,7 @@ return ( <>
 </div>
 
 <Modal open={open} setOpen={setOpen}>
-  <FormProduct setOpen={setOpen} setAlert={setAlert} />
+  <FormProduct setOpen={setOpen} setAlert={setAlert} products={products} />
 </Modal>
 
 </> ) }; export default Products;

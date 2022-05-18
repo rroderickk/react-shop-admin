@@ -14,8 +14,8 @@ const useFetchAxios =(endpoint)=> {
     setData(res.data);
   }
 
-  React.useEffect(()=> { 
-    try { fetchData() } 
+  React.useEffect(()=> {
+    try { fetchData() }
     catch (error) { console.log("[!]\t"+error) } //todo
   },[endpoint])
 
@@ -24,12 +24,15 @@ const useFetchAxios =(endpoint)=> {
 }; export { useFetchAxios, makeFetch };
 
 
+
+
+// |$| withFetch    
 /** //! ()=> makeFetch
  * Esta función realiza una solicitud de recuperación 
  * al servidor y devuelve la respuesta.
  * @returns Una función que toma 3 parámetros.
  */
-const makeFetch =( 
+const makeFetch =(
    path="", method="GET", body={} 
 )=> {
   const access_token = Cookies.get("access_token");

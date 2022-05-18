@@ -49,7 +49,7 @@ return ( <>
           </div>
           <div className="hidden md:block z-10" >
             <div className="ml-10 flex items-baseline space-x-4">
-              { navigation.map((item)=> (
+              { navigation.map(item=> (
                 <Link key={item.name} href={item.href}>
                   <a className={classNames(item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium')}
                     aria-current={item.current ? 'page' : undefined}
@@ -88,7 +88,7 @@ return ( <>
                 leaveTo="transform opacity-0 scale-95"
               >
                 <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                  { userNavigation.map((item)=> (
+                  { userNavigation.map(item=> (
                     <Menu.Item key={item.name}>
                       {({ active })=> (
                         <Link key={item.name} href={item.href}>
@@ -116,7 +116,7 @@ return ( <>
 
     <Disclosure.Panel className="md:hidden">
       <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-        { navigation.map((item)=> (
+        { navigation.map(item=> (
           <Disclosure.Button key={item.name} as="a" href={item.href}
             className={classNames(item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white', 'block px-3 py-2 rounded-md text-base font-medium')}
             aria-current={item.current ? 'page' : undefined}
@@ -143,7 +143,7 @@ return ( <>
           </button>
         </div>
         <div className="mt-3 px-2 space-y-1">
-          {userNavigation.map((item)=> (
+          {userNavigation.map(item=> (
             <Disclosure.Button key={item.name} as="a" href={item.href} className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700">
               {item.name}
             </Disclosure.Button>

@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { addProduct } from '@services/api/products';
 
-export default function FormProduct({ setOpen, setAlert }) {
+export default function FormProduct({products, setOpen, setAlert }) {
   const formRef = useRef(null);
 
   const handleSubmit =(event)=> { event.preventDefault();
@@ -23,7 +23,7 @@ export default function FormProduct({ setOpen, setAlert }) {
         autoClose: false,
       });
     setOpen(false);
-    }) .catch(error=> {
+    }).catch(error=> {
         setAlert({
           active: true,
           message: error.message,
@@ -31,7 +31,6 @@ export default function FormProduct({ setOpen, setAlert }) {
           autoClose: false,
         });
       })
-
   };
 
   return (
@@ -43,19 +42,22 @@ export default function FormProduct({ setOpen, setAlert }) {
               <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                 Title
               </label>
-              <input type="text" name="title" id="title" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              <input defaultValue={products?.title} type="text" name="title" id="title" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
             </div>
             <div className="col-span-6 sm:col-span-3">
               <label htmlFor="price" className="block text-sm font-medium text-gray-700">
                 Price
               </label>
-              <input type="number" name="price" id="price" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              <input defaultValue={products?.price} type="number" name="price" id="price" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
             </div>
             <div className="col-span-6">
               <label htmlFor="category" className="block text-sm font-medium text-gray-700">
                 Category
               </label>
-              <select id="category" name="category"
+              <select
+                id="category"
+                name="category"
+                defaultValue={products?.category}
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
@@ -71,11 +73,13 @@ export default function FormProduct({ setOpen, setAlert }) {
               <label htmlFor="description" className="block text-sm font-medium text-gray-700">
                 Description
               </label>
-              <textarea name="description" id="description"
-                autoComplete="description" rows="3"
-                className="form-textarea mt-1 block w-full mt-1 
-                focus:ring-indigo-500 focus:border-indigo-500 
-                block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              <textarea
+                defaultValue={products?.description}
+                name="description"
+                id="description"
+                autoComplete="description"
+                rows="3"
+                className="form-textarea mt-1 block w-full mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
               />
             </div>
             <div className="col-span-6">
@@ -92,11 +96,12 @@ export default function FormProduct({ setOpen, setAlert }) {
                       />
                     </svg>
                     <div className="flex text-sm text-gray-600">
-                      <label htmlFor="images"
+                      <label
+                        htmlFor="images"
                         className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
                       >
                         <span>Upload a file</span>
-                        <input id="images" name="images" type="file" className="sr-only" />
+                        <input defaultValue={products?.images} id="images" name="images" type="file" className="sr-only" />
                       </label>
                       <p className="pl-1">or drag and drop</p>
                     </div>
@@ -108,11 +113,12 @@ export default function FormProduct({ setOpen, setAlert }) {
           </div>
         </div>
         <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+
           <button type="submit"
             className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Save
+          > Save
           </button>
+
         </div>
       </div>
     </form>

@@ -4,8 +4,8 @@ import { useFetchAxios } from '@hooks/useFetch';
 import { ChartComponent } from '@common/ChartComponent';
 import Pagination from '@components/Pagination';
 
-  const PRODUCT_LIMIT = 10;
-  const PRODUCT_OFFSET = 10;
+const PRODUCT_LIMIT = 10;
+const PRODUCT_OFFSET = 10;
 
 export default function Dashboard() {
 

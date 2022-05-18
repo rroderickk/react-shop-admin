@@ -8,7 +8,7 @@
       "@public/*": ["public/*"],
       "@layout/*": ["layout/*"],
       "@hooks/*": ["hooks/*"],
-      "@services/*": ["services/*"],
-    },
-  },
+      "@services/*": ["services/*"]
+    }
+  }
 }

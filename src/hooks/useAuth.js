@@ -25,8 +25,7 @@ export const ProviderAuth =({ children })=> {
  */ 
 export const useAuth =()=> React.useContext(AuthContext);
 
-// |$| kasjdhf
-
+// |$| autenticacion    
 /** //! ()=> Le Authentication
  * It's a function that returns an object with two properties: user and signIn
  * @returns An object with two properties: user and signIn.
@@ -45,7 +44,7 @@ const useProvideAuth =()=> {
    * @param password - It's the password of the user.
    */
   const signIn = async(email, password)=> {
-    if(email=="rodri@dev.com" && password=="dev") { //!<- fake user
+    if (email=="rodri@dev.com" && password=="dev") { //!<- fake user
       return setUser({ email: 'rodri@dev.com',
         name: 'RodriDev', department: 'Owner',
         title: 'Developer', role: 'LeCreator',
@@ -91,8 +90,5 @@ const useProvideAuth =()=> {
   };
 
   /* It's returning an object with two properties: user and signIn. */
-  return {
-    user,
-    signIn,
-  };
+  return { user, signIn, };
 };

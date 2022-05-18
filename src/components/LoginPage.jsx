@@ -3,7 +3,6 @@ import { LockClosedIcon } from '@heroicons/react/solid';
 import { useAuth } from '@hooks/useAuth';
 import { useRouter } from "next/router";
 
-
 export default function LoginPage() { const auth = useAuth();
 
   const [errorLogin, setErrorLogin] = React.useState(null);
@@ -124,17 +123,15 @@ return ( <>
                 </span>
                 <span className="relative inline-flex rounded-full 
                   h-4 w-4 bg-cyan-400">
-
                 </span>
               </span>
             )}
         </button>
       </div>
-      {errorLogin && (
+      { errorLogin && (
         <div className="p-3 mb-3 text-sm text-red-700 bg-red-100 
           rounded-lg dark:bg-red-200 dark:text-red-800" role="alert"
-        >
-          <span className="font-medium">Error!</span> {errorLogin}
+        > <span className="font-medium">Error!</span> {errorLogin}
         </div>
       )}
 
